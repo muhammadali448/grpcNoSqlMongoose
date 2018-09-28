@@ -17,29 +17,29 @@ mongoose
         console.log(err.message);
     });
 server.addService(proto.TodosService.service, {
-    // List(_, callback) {
-    //     todosServices.list(callback);
-    // },
-    // Insert(call, callback) {
-    //     let todo = new todosServices(call.request);
-    //     todo.add(callback);
-    // },
-    // remove(call, callback) {
-    //     let todo = new todosServices(call.request.id);
-    //     todo.remove(callback);
-    // },
-    // Get(call, callback) {  
-    //     let todo = new todosServices(call.request.id);
-    //     todo.fetch(callback);
-    // },
-    // Update(call, callback) {
-    //     let todo = new todosServices({
-    //         id: call.request.id,
-    //         title: call.request.title,
-    //         description: call.request.description
-    //     });
-    //     todo.update(callback);
-    // }
+    List(_, callback) {
+        todosServices.list(callback);
+    },
+    Insert(call, callback) {
+        let todo = new todosServices(call.request);
+        todo.add(callback);
+    },
+    remove(call, callback) {
+        let todo = new todosServices(call.request.id);
+        todo.remove(callback);
+    },
+    Get(call, callback) {  
+        let todo = new todosServices(call.request.id);
+        todo.fetch(callback);
+    },
+    Update(call, callback) {
+        let todo = new todosServices({
+            id: call.request.id,
+            title: call.request.title,
+            description: call.request.description
+        });
+        todo.update(callback);
+    },
     DoneTodo(call, callback) {
         let todo = new todosServices({
             id: call.request.id,
