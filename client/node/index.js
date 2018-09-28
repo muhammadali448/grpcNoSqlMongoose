@@ -13,14 +13,14 @@ const client = new proto.TodosService(
 //     console.error(error.message);
 // })
 
-// client.Get({ id: 633110 }, (error, response) => {
+// client.Get({ id: 292870 }, (error, response) => {
 //     if (!error) {
 //         return console.log('Response: ', response);
 //     }
 //     console.error(error.message);
 // })
 
-// client.Remove({ id: 171216}, (error, response) => {
+// client.Remove({ id: 136131}, (error, response) => {
 //     if (!error) {
 //         return console.log('Response: ', response);
 //     }
@@ -32,9 +32,15 @@ const client = new proto.TodosService(
 //     if (!error) {
 //         return console.log('Response: ', response);
 //     }
-//     console.error(error.message);
+//     console.error('Insert error: ', error.message);
 // })
-client.Update({ id: 633110, title: 'Updated Todo Title', description: 'Updated Todo Description' }, (error, response) => {
+// client.Update({ id: 699065, title: 'Todo Ali', description: ' Todo Description Ali' }, (error, response) => {
+//         if (!error) {
+//             return console.log('Response: ', response)
+//         }
+//         console.error(error.message);
+//     })
+client.DoneTodo({ id: 605277, done: true }, (error, response) => {
         if (!error) {
             return console.log('Response: ', response)
         }

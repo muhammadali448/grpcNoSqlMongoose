@@ -15,11 +15,15 @@ class Todo {
     const options = {
       lean: true
     };
-    todoModel.find(criteria, projections, options, cb)
+    todoModel.find(criteria, projections, options).then((response) => {
+      cb(null, response);
+    }).catch((error) => {
+      cb(error, null)
+    })
   }
 
   add(cb) {
-    new todoModel(this.payload).save(cb);
+      todoModel(this.payload).save(cb(null, this.payload));
   }
 
   fetch(cb) {
@@ -31,23 +35,47 @@ class Todo {
     const options = {
       lean: true
     };
-    todoModel.find(criteria, projections, options, cb)
+    todoModel.findOne(criteria, projections, options).then((response) => {
+      cb(null, response);
+    }).catch((err) => {
+      cb(err, null)
+    })
   }
 
   remove(cb) {
-    todoModel.remove({ id: this.payload }, cb);
+    todoModel.deleteOne({ id: this.payload }).then((response) => {
+      cb(null, 'Successfully deleted')
+    }).catch((err) => {
+      cb(err, null)
+    });
   }
   update(cb) {
-    console.log(this.payload);
     const options = {
       lean: true
     };
-    // Model.findOneAndUpdate(query, { $set: { name: 'jason bourne' }}, options, callback)
     todoModel.findOneAndUpdate({ id: this.payload.id }, {
       $set: {
       title: this.payload.title,
       description: this.payload.description
-    }}, options, cb)
+    }}, options).then((response) => {
+      cb(null, this.payload)
+    }).catch((err) => {
+      cb(err, null)
+    }) 
+  }
+
+  doneTodo(cb) {
+    const options = {
+      lean: true
+    };
+    todoModel.findOneAndUpdate({ id: this.payload.id }, {
+      $set: {
+        done: this.payload.done
+    }}, options).then((response) => {
+      cb(null, this.payload)
+    }).catch((err) => {
+      cb(err, null)
+    })
   }
 }
 
